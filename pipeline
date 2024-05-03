@@ -16,40 +16,37 @@ pipeline {
         
         stage('Test') {
             steps {
-                // Add test commands here
                 sh 'mvn test'
             }
         }
         
         stage('Deploy') {
             steps {
-                // Add deployment commands here
                 sh 'echo "Deploying..."'
+                // Add deployment commands here
             }
         }
         
-        // Add more stages as needed
-        
         stage('Post-build') {
             steps {
-                // Add post-build actions here
                 echo 'Build completed successfully!'
+                // Add post-build actions here
             }
         }
     }
     
     post {
         always {
-            // Add cleanup or notification actions here
             echo 'Pipeline finished'
+            // Add cleanup or notification actions here
         }
         success {
-            // Actions to perform when the pipeline succeeds
             echo 'Pipeline succeeded!'
+            // Actions to perform when the pipeline succeeds
         }
         failure {
-            // Actions to perform when the pipeline fails
             echo 'Pipeline failed!'
+            // Actions to perform when the pipeline fails
         }
     }
 }
