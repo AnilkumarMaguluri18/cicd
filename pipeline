@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/AnilkumarMaguluri18/cicd.git'
+                git 'https://github.com/AnilkumarMaguluri18/Petclinic.git'
             }
         }
         
