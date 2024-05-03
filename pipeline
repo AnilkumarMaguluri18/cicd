@@ -7,6 +7,40 @@ pipeline {
                 git 'https://github.com/harismuneer/Flight-Booking-System-JavaServlets_App.git'
             }
         }
-        // Add more stages for building, testing, deploying, etc.
+        
+        stage('Build') {
+            steps {
+                // Build the Maven project
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests using Maven
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Example: deploy to a Tomcat server
+                sh 'cp target/*.war /path/to/tomcat/webapps'
+                // Or deploy using another method
+            }
+        }
+
+        // Add more stages for additional tasks as needed
+    }
+
+    post {
+        success {
+            // Additional actions to perform if the pipeline succeeds
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            // Additional actions to perform if the pipeline fails
+            echo 'Pipeline failed!'
+        }
     }
 }
