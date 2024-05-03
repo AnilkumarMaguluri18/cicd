@@ -1,45 +1,54 @@
 pipeline {
     agent any
-
+    
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/harismuneer/Flight-Booking-System-JavaServlets_App.git'
+                git 'https://github.com/AnilkumarMaguluri18/cicd.git'
             }
         }
         
         stage('Build') {
             steps {
-                // Build the Maven project
                 sh 'mvn clean package'
             }
         }
-
+        
         stage('Test') {
             steps {
-                // Run tests using Maven
+                // Add test commands here
                 sh 'mvn test'
             }
         }
-
+        
         stage('Deploy') {
             steps {
-                // Example: deploy to a Tomcat server
-                sh 'cp target/*.war /path/to/tomcat/webapps'
-                // Or deploy using another method
+                // Add deployment commands here
+                sh 'echo "Deploying..."'
             }
         }
-
-        // Add more stages for additional tasks as needed
+        
+        // Add more stages as needed
+        
+        stage('Post-build') {
+            steps {
+                // Add post-build actions here
+                echo 'Build completed successfully!'
+            }
+        }
     }
-
+    
     post {
+        always {
+            // Add cleanup or notification actions here
+            echo 'Pipeline finished'
+        }
         success {
-            // Additional actions to perform if the pipeline succeeds
+            // Actions to perform when the pipeline succeeds
             echo 'Pipeline succeeded!'
         }
         failure {
-            // Additional actions to perform if the pipeline fails
+            // Actions to perform when the pipeline fails
             echo 'Pipeline failed!'
         }
     }
